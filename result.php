@@ -297,7 +297,7 @@ function dbResult($dbResult): void
         echo "<div class='result-container'>";
         echo "<b><div id='rl'><a class='result-link' href='https://{$row["link"]}'>{$row["title"]}</a></div></b>";
         echo "<div><a class='result-url' href='https://{$row["link"]}'>https://{$row["link"]}</a></div>";
-        echo "<span class='result-snippet'>" . substr($row["snippet"], 0, 100) . "...</span>";
+        echo "<span class='result-snippet'>" . substr($row["keywords"], 0, 100) . "...</span>";
         echo "<div class='external-links-count'>External Links: {$row['external_links_count']}</div>";
         echo "</div>";
     }
