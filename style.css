@@ -1,16 +1,27 @@
-
 body, html {
     margin: 0;
     padding: 0;
-    width: 99.9%;
-    background-color: white;
+    width: 100%;
+    height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-color: #f4f7fb;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
 }
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
 #searchForm{
-    background-color: #f9f9fb;
+    background-color: #ffffff;
     height: 110px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #e1e1e1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
 
 }
+
 button {
     border: 1px solid red;
     background-color: white;
@@ -20,13 +31,12 @@ button {
     margin-right: 3px;
 }
 
-
 #logo {
     width: 10%;
     float: left;
-
 }
-#logo1{
+
+#logo1 {
     width: 0;
 }
 
@@ -34,43 +44,44 @@ button {
     position: absolute;
     width: 100%;
     top: 15px;
-    margin-left: 100px;
+    margin-left: 160px;
     z-index: 1;
 }
-#nav{
+
+#nav {
     position: absolute;
-    top:75px;
+    top: 75px;
     left: 165px;
 }
 
-
 #searchfield {
-    width: 500px; /* Adjust the width of the search field */
-    height: 38px;
-    font: 18px/normal 'Roboto', Helvetica, Sans-Serif;
-    margin-left: 63px;
-    padding-left: 10px;
+    width: 650px;
+    height: 45px;
+    font-size: 16px;
+    padding: 0 20px;
     background-color: #fff;
-    border: 2px solid #959595;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-    vertical-align: middle;
-    position: relative;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    
 }
+
 #searchfield:focus {
     border-radius: 15px 15px 0 0;
     outline: none;
 }
 
-
 #gobtn {
-    width: 80px;
-    height: 43px;
-    font-size: 18px;
-    background-color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #959595;
-    vertical-align: middle;
-
+   padding: 12px 30px;
+    font-size: 16px;
+    background-color: #3277ef;
+    color: white;
+    border-radius: 25px;
+    border: none;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #gobtn:hover {
@@ -78,283 +89,355 @@ button {
     background-color: #959595;
 }
 
-
 #webbtn {
     position: static;
     padding: 8px 16px;
-    border: none; /* Remove border from the buttons */
+    border: none;
+    /* Remove border from the buttons */
     background-color: transparent;
     cursor: pointer;
     font-size: 16px;
 }
+
 #imagebtn {
     position: static;
     padding: 8px 18px;
-    border: none; /* Remove border from the buttons */
+    border: none;
+    /* Remove border from the buttons */
     margin-left: 10px;
     background-color: transparent;
     cursor: pointer;
     font-size: 16px;
 }
+
 #webbtn.active,
 #imagebtn.active {
-    border-bottom: 3px solid red; /* Add a red line underneath the active button */
+    border-bottom: 3px solid red;
+    /* Add a red line underneath the active button */
 }
-
 
 a {
     color: blue;
-    font-size: 20px;
+    font-size: 14pt;
     text-decoration: none;
 }
 
 #recentSearches {
     display: none;
     position: absolute;
-    width: 480px;
+    width: 658px;
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 5;
-    margin-left: 63px;
+    margin-top: -1px;
     border: 2px solid #959595;
     border-radius: 0 0 15px 15px;
 }
-
-
 
 #recentSearches a {
     display: block;
     padding: 10px;
     text-decoration: none;
+    font-size: x-large;
     color: #333;
     user-select: text;
 }
+
 .result-container {
-    margin-left: 163px; /* Adjust the value according to your design */
-    margin-right: 43%;
-    height: auto;
+   margin-top: 30px;
+    margin-left: 10%;
+    width: 51%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#rl{
-    margin-top:20px;
-}
 .result-link {
     font-size: 18pt;
     color: #3277ef;
-
-
-
 }
+
 .result-link:visited {
     color: #7a5aed;
-
-
 }
 
-.result-link:hover{
-    text-decoration:  #3277ef underline;
-
-
+.result-link:hover {
+    text-decoration: #3277ef underline;
 }
+
 .result-link:visited:hover {
     text-decoration: #7a5aed underline;
-
 }
 
-
 .result-url {
-    font-size: 15pt;
+    font-size: 12pt;
     color: green;
-
 }
 
 .result-snippet {
-    font-size: 15pt;
+    font-size: 12pt;
     color: #666666;
 }
+
 .recent-search-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .delete-search {
     cursor: pointer;
     font-size: 18px;
     margin-left: 10px;
 }
+
 img {
     max-width: 100%;
     height: auto;
 }
-.unsplash-image img,
-.google-image img {
+
+.google-image img,
+.unsplash-image img {
+    max-height: 250px;
+    /* Increased height */
     max-width: 100%;
-    aspect-ratio: 3/2;
-    object-fit: contain;
-    border-radius: 7px; /* You can adjust the border-radius value as needed */
+    /* Maintain the width constraint */
+    display: block;
+    margin: 0 auto;
+    /* Center images */
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
 }
-#imaget{
-    font-size: 20px;
-}
-#imaget2{
+
+
+#imaget {
     font-size: 20px;
 }
 
-.unsplash-image,
-.google-image {
-    display: inline-block;
-    padding: 14px;
-    max-width: 18%;
-    margin: 0 10px; /* Adjust the margin as needed for spacing between images */
-    box-sizing: border-box;
-    overflow: hidden; /* Ensure images are fully contained within the container */
+#imaget2 {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
+.image-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Space between rows */
+    gap: 10px; /* Reduced space between images */
+    flex-wrap: wrap; /* Wrap images to the next row if the screen is narrow */
+    padding-left: 10px; /* Add slight padding to prevent images from touching the left edge */
+    padding-right: 10px; /* Add slight padding to prevent images from touching the right edge */
+}
+
+.google-image,
+.unsplash-image {
+    text-align: center;
+    max-width: 252px;
+    /* Increased width for each image container */
+    margin: 0 10px;
+    /* Adjust margin for spacing */
+    padding: 10px;
+    /* Add some padding for a cleaner look */
+}
+
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: 50px;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
-    height: 95%;
+    height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.9);
+    padding-top: 60px;
 }
 
 .modal-content {
     margin: auto;
     display: block;
-    max-width: 90%;
-    max-height: 90%;
-
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
 }
+#modalImage {
+    width: 60vw; /* 60% of the viewport width */
+    max-height: 80vh; /* Limit the height to 80% of the viewport height */
+    object-fit: contain; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better appearance */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+
 #modalTitle {
-    color: #fff; /* Set the text color */
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-top: 15px; /* Adjust the margin-top as needed */
-    margin-left: 30%;
+    color: #fff;
+    font-size: 24px;
+    margin-top: 15px;
+    margin-left: auto;
 
 }
-
-
 .close {
-    color: #fff;
     position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 30px;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
     font-weight: bold;
+    transition: 0.3s;
     cursor: pointer;
 }
+.close:hover {
+    color: #bbb;
+}
 
-.featured-snippet{
-    background-color:  #f9f9fb;
+.featured-snippet {
+    background-color: #ffffff;
     font-size: 20pt;
-    margin-top: 15px;
+    margin-top: 23px;
     padding: 10px;
-    margin-left: 163px;
-    margin-right: 30%;
-    border: 3px solid #ccc;
-    border-radius: 15px;
+    margin-left: 10%;
+    width: 52%;
+    border-left: 4px solid #3277ef;
+    border-right: 4px solid #3277ef;
+    border-radius: 8px;
 }
 
 #voiceSearchBtn {
     position: relative;
-    top: 12px;
-    right: 130px; /* Adjust the right distance based on your layout */
-    width: 30px; /* Adjust the width based on your microphone image size */
-    height: 34px; /* Adjust the height based on your microphone image size */
+    top: 11px;
+    right: 145px;
+    /* Adjust the right distance based on your layout */
+    width: 30px;
+    /* Adjust the width based on your microphone image size */
+    height: 34px;
+    /* Adjust the height based on your microphone image size */
     cursor: pointer;
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 #voiceSearchBtn:hover {
-    transform: scale(1.2); /* Add a scale effect on hover */
+    transform: scale(1.2);
+    /* Add a scale effect on hover */
 }
 
 @media only screen and (max-width: 1024px) {
-
-    #searchForm {
-        background-color: white;
-        width: 100%;
-        height: 130px;
-        border-bottom: 1px solid black;
-        display: flex;
-        justify-content: center; /* Horizontally center */
-        position: relative;
+    /* Keep body background the same */
+    body {
+        background-color: #f4f7fb;
     }
 
+    /* Ensure search form looks similar on both large and small screens */
+    #searchForm {
+        background-color: #ffffff;
+        width: 100%;
+        height: 135px;
+        border-bottom: 2px solid #e1e1e1;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same box-shadow as large screens */
+        z-index: 10;
+        margin-bottom: 29px;
+    }
+        #logo {
+            width: 0%;
+        }
+
+    /* Adjust search bar positioning */
     #sbar {
-        width: 410px;
+        width: 90%; /* Center the search bar */
         margin-left: 0;
+        margin-right: 10px;
         top: 40px;
         text-align: center;
+        height: 60px;
     }
 
-    #logo {
-        width: 0;
-    }
-
+    /* Keep logo consistent */
     #logo1 {
         width: 81px;
         height: 41px;
         text-align: center;
     }
 
+    /* Adjust search field to match large screen appearance */
     #searchfield {
-        width: 360px;
-        border-radius: 24px;
-        margin-left: 0;
-        left: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 340px;
+        height: 45px;
+        font-size: 16px;
+        padding-left: 13px;
+        padding-right: 27px;
+        background-color: #fff;
+        border-radius: 30px;
+        border: 2px solid #ccc;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    #nav{
+        left: 45px;
+        top: 88px;
+        z-index: -1;
     }
 
-    #nav {
-        width: 410px;
-        top: 75px;
-        left: 0;
-        height: 60px;
+    #searchfield:focus {
+        border-radius: 15px 15px 0 0;
+        outline: none;
     }
 
+        #webbtn{
+            position: absolute;
+            padding: 8px 18px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 12px;
+        
+        }
+        #imagebtn {
+            position: absolute;
+            padding: 8px 18px;
+            left: 61px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 12px;
+        }
+
+    #webbtn.active, #imagebtn.active {
+        border-bottom: 3px solid red;
+    }
+
+    /* Remove unnecessary styles for the 'go' button */
     #gobtn {
-        display: none;
+        display: none; /* Hide the 'go' button on smaller screens */
     }
 
-    #webbtn {
-        width: 65px;
-        height: 45px;
-        padding: 0;
-        margin-left: 40px;
-        margin-top: 12px;
-    }
-
-    #imagebtn {
-        width: 65px;
-        height: 45px;
-        padding: 0;
-        margin-left: 5px;
-    }
-
-    body {
-        max-width: 100%;
-        overflow-x: hidden;
-        font-family: Arial, sans-serif;
-    }
-
+    /* Keep recent searches style consistent */
     #recentSearches {
         display: none;
         position: absolute;
-        width: 340px;
+        width: 348px;
         background-color: #f9f9f9;
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         padding: 12px 16px;
         z-index: 5;
-        margin-left: 16px;
+        margin-top: -40px;
         border: 2px solid #959595;
         border-radius: 0 0 15px 15px;
-        top: 46px; /* Adjust the top value to position it below the search bar */
     }
 
     #recentSearches a {
@@ -362,145 +445,155 @@ img {
         padding: 10px;
         text-decoration: none;
         color: #333;
-        user-select: text;
+        font-size: larger;
     }
 
-
-    .featured-snippet{
-        background-color: white;
-
-        font-size: 12pt;
-        margin-top: 5px;
-        margin-left: 5px;
-        margin-right: 5px;
-        width: 92%;
+    /* Make featured snippet and result containers more consistent */
+    .featured-snippet {
+        background-color: #ffffff;
+        font-size: 14pt;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
         padding: 10px;
-        border: 1px solid #959595 ;
-        border-radius: 5px;
-
-    }
-    #rl{
-        margin-top:5px;
-        margin-bottom:2px;
-    }
-    a.result-url{
-        word-wrap: break-word;
-        padding-right: 5px;
+        border-radius: 8px;
+        border-left: 4px solid #3277ef;
+        border-right: 4px solid #3277ef;
     }
 
-    .result-link {
-
-        margin-left: 0;
-        font-size: 15pt;
-    }
-    .result-link:visited {
-        margin-left: 0;
-        font-size: 15pt;
-    }
-    .result-link:hover{
-        margin-left: 0;
-        font-size: 15pt;
-    }
-    .result-link:visited:hover {
-        margin-left: 0;
-        font-size: 15pt;
-    }
-    .result-url {
-        margin-left: 0;
-        font-size: 12pt;
-    }
-    .result-snippet {
-        margin-left: 0;
-        font-size: 12pt;
-    }
     .result-container {
-        width: 92%;
-        padding-top: 10px;
-        padding-bottom: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-left: 5px;
+        width: 95%;  /* Ensures it doesn't take up too much width */
+        padding: 10px;  /* Padding for content spacing */
+        margin-left: auto;
+        margin-right: auto;
         font-size: 15pt;
-        background :  white;
-        margin-top: 5px;
-        border: 1px solid #959595 ;
+        background: white;
+        margin-top: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
+        word-wrap: break-word; /* Ensures long words break and wrap */
+        overflow-wrap: break-word; /* Same as word-wrap, for better compatibility */
+        word-break: break-word; /* Breaks long words at the edge */
+        box-sizing: border-box; /* Ensures padding and border are included in width calculation */
     }
 
-    #voiceSearchBtn {
-        position: relative;
-        top: 9px;
-        right: 29px; /* Adjust the right distance based on your layout */
-        width: 30px; /* Adjust the width based on your microphone image size */
-        height: 30px; /* Adjust the height based on your microphone image size */
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    }
-    #voiceSearchBtn.active {
-        opacity: 0.6; /* Reduce opacity when the voice search is active */
-        transform: scale(1); /* Reset scale during active state */
-    }
-    .unsplash-image img,
-    .google-image img {
-        max-width: 100%;
-        aspect-ratio: 3/2;
-        object-fit: contain;
-        border-radius: 7px; /* You can adjust the border-radius value as needed */
+        .result-link,
+        .result-url,
+        .result-snippet {
+            word-wrap: break-word;
+            /* Ensure long text wraps */
+            word-break: break-word;
+            /* Break long words if needed */
+            overflow-wrap: break-word;
+            /* Same as word-wrap */
+        }
+
+    /* Result links and snippets */
+        .result-link {
+            font-size: 18pt;
+            color: #3277ef;
+        }
+    
+        .result-link:visited {
+            color: #7a5aed;
+        }
+    
+        .result-link:hover {
+            text-decoration: #3277ef underline;
+        }
+    
+        .result-link:visited:hover {
+            text-decoration: #7a5aed underline;
+        }
+
+    .result-url {
+        font-size: 12pt;
+        color: green;
     }
 
-    .unsplash-image,
-    .google-image {
-        display: inline-block;
-        padding: 5px;
-        max-width: 30%;
-        margin: 0 6px; /* Adjust the margin as needed for spacing between images */
+    .result-snippet {
+        font-size: 12pt;
+        color: #666666;
+    }
+
+    /* Adjust image and modal styles */
+    .unsplash-image, .google-image {
+        display: block;
+        max-width: 48%;
+        margin: 0px;
+        padding: 0px;
         box-sizing: border-box;
-        overflow: hidden; /* Ensure images are fully contained within the container */
+        overflow: hidden;
     }
-    #imaget{
-        font-size: 10pt;
+
+    .google-image img, .unsplash-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
-    #imaget2{
-        font-size: 10pt;
+
+    #modalTitle {
+        color: #fff;
+        font-size: 21px;
+        margin-top: 18px;
+        margin-left: auto;
+        text-align: center;
+        
     }
+    
+    /* Adjust modal styles for small screens */
     .modal {
         display: none;
         position: fixed;
-        z-index: 1;
-        padding-top: 90px;
-        left: 0;
+        z-index: 1000;
         top: 0;
-        width: 95%;
-        height: 95%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-color: rgba(0, 0, 0, 0.9);
+        padding-top: 60px;
     }
 
     .modal-content {
         margin: auto;
         display: block;
-        max-width: 90%;
-        max-height: 90%;
-    }
-    #modalTitle {
-        color: #fff; /* Set the text color */
-        font-size: 10pt; /* Adjust the font size as needed */
-        margin-top: 15px; /* Adjust the margin-top as needed */
-        margin-left: 15px;
-
+        max-width: 80%;
+        height: auto;
+        border-radius: 10px;
     }
 
+    #modalImage {
+        width: 80vw;
+        max-height: 80vh;
+        object-fit: contain;
+        margin-top: 25px;
+    }
 
     .close {
-        color: #fff;
         position: absolute;
-        top: 10px;
-        right: 25px;
-        font-size: 30px;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
         font-weight: bold;
         cursor: pointer;
     }
 
-}
+    /* Voice Search Button */
+    #voiceSearchBtn {
+        width: 30px;
+        height: 34px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        right: -180px;
+        top: -43px;
+    }
 
+    #voiceSearchBtn:hover {
+        transform: scale(1.2);
+    }
+    
+}
