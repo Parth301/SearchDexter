@@ -87,7 +87,7 @@ function googleweb($searchTerm){
                 echo "<b><div id='rl'><a class='result-link' href='{$item["link"]}'>{$item["title"]}</a></div></b>";
                 echo "<div><a class='result-url' href='{$item["link"]}'>{$item["link"]}</a></div>";
                 if (!empty($item["snippet"])) {
-                    echo "<span class='result-snippet'>" . substr($item["snippet"], 0, 100) . "...</span></div>";
+                    echo "<span class='result-snippet'>" . substr($item["snippet"], 0, 140) . "...</span></div>";
                 } else {
                     echo "<span class='result-snippet'>No information available</span></div>";
                 }
@@ -103,11 +103,10 @@ function googleweb($searchTerm){
     }
 }
 
-
 function fetchImagesFromGoogleAPI($searchTerm)
 {
     $apiKey = 'AIzaSyBE-RTu20sjAsA-3T1eJVGCt4cih2lWbvo';
-    $cx = '32d433a2f0f444f66'; // Replace with your actual custom search engine ID
+    $cx = '32d433a2f0f444f66';
     $url = "https://www.googleapis.com/customsearch/v1?q=" . urlencode($searchTerm) . "&key=$apiKey&cx=$cx&searchType=image&safe=high";
 
     $response = @file_get_contents($url);
@@ -116,35 +115,33 @@ function fetchImagesFromGoogleAPI($searchTerm)
         $data = json_decode($response, true);
 
         if (isset($data['items'])) {
-            $imagesPerRow = 5;
-            $imageChunks = array_chunk($data['items'], $imagesPerRow);
-
-            foreach ($imageChunks as $imageRow) {
+            foreach (array_chunk($data['items'], 5) as $imageRow) { // 5 images per row
                 echo '<div class="image-row">';
-
                 foreach ($imageRow as $photo) {
-                    $title = $photo['title'] ?? 'Untitled';
-                    $url = $photo['link'];
-
-                    echo '<div class="google-image">';
-                    echo '<img src="' . $url . '" alt="' . $title . '" onclick="openModal(\'' . $url . '\', \'' . $title . '\')">';
-                    echo '<div id="imaget2">' . $title . '</div>';
-                    echo '</div>';
+                    $title = htmlspecialchars($photo['title'] ?? 'Untitled', ENT_QUOTES, 'UTF-8');
+                    $url = htmlspecialchars($photo['link'], ENT_QUOTES, 'UTF-8');
+                    echo '<div class="google-image">
+                         <img src="' . $url . '" alt="' . $title . '" onclick="openModal(\'' . $url . '\', \'' . $title . '\')">
+                          <div id="imaget2">' . $title . '</div>
+                    </div>';      
                 }
-
                 echo '</div>';
             }
         } else {
-            echo "<br><div style=\"font-size: 30px; text-align: center;\">No images found for the given search term.</div>";
+            echo '<br><div style="font-size: 30px; text-align: center;">No images found for the given search term.</div>';
         }
     } else {
-        echo "<br><div style=\"font-size: 30px; text-align: center;\">Error fetching images, Please try again with Proper Search term.</div>";
+        echo '<br><div style="font-size: 30px; text-align: center;">Error fetching images. Please try again with a proper search term.</div>';
     }
 }
 
-
 function searchImages($searchTerm)
 {
+    // Only fetch images if the search term is not empty
+    if (empty($searchTerm)) {
+        return; // Exit the function without fetching any images
+    }
+
     $apiKey = 'FyLIfZMIwS0v5rq8Ecwd9N9BKCG3EZi4lkDUX6qn_Ls';
     $url = "https://api.unsplash.com/photos/random?query=" . urlencode($searchTerm) . "&count=25&client_id=$apiKey&orientation=landscape&content_filter=high";
 
@@ -153,28 +150,26 @@ function searchImages($searchTerm)
     if ($response !== false) {
         $data = json_decode($response, true);
 
-        $imagesPerRow = 5;
-        $imageChunks = array_chunk($data, $imagesPerRow);
-
-        foreach ($imageChunks as $imageRow) {
+        foreach (array_chunk($data, 5) as $imageRow) { // 5 images per row
             echo '<div class="image-row">';
-
             foreach ($imageRow as $photo) {
-                $title = $photo['alt_description'] ?? 'Untitled';
-                $url = $photo['urls']['regular'];
-
-                echo '<div class="unsplash-image">';
-                echo '<img src="' . $url . '" alt="' . $title . '" onclick="openModal(\'' . $url . '\', \'' . $title . '\')">';
-                echo '<div id="imaget2">' . $title . '</div>';
-                echo '</div>';
+                $title = htmlspecialchars($photo['alt_description'] ?? 'Untitled', ENT_QUOTES, 'UTF-8');
+                $url = htmlspecialchars($photo['urls']['regular'], ENT_QUOTES, 'UTF-8');
+                echo '
+                    <div class="unsplash-image">
+                        <img src="' . $url . '" alt="' . $title . '" onclick="openModal(\'' . $url . '\', \'' . $title . '\')">
+                        <div id="imaget2">' . $title . '</div>
+                    </div>';
             }
-
             echo '</div>';
         }
     } else {
-        echo "<br><div style=\"font-size: 30px; text-align: center;\">Error fetching images, Please try again with Proper Search term.</div>";
+        // Error message will not be shown because Google API handles it already
     }
 }
+
+
+
 function generateFeatureSnippetDuckDuckGo($searchTerm): string
 {
     // DuckDuckGo Instant Answer API endpoint
@@ -237,7 +232,7 @@ $recentSearches = getRecentSearches($conn, $userToken);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Dexter Result Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -282,11 +277,12 @@ $recentSearches = getRecentSearches($conn, $userToken);
         <input type="submit" name="imagebtn" value="Images" id="imagebtn"
                class="<?php echo isset($_GET['imagebtn']) ? 'active' : ''; ?>" onclick="setSearchOption('images')">
     </div>
+
 </form>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage" class="modal-content" alt="Zoomed Image">
-    <div id="modalTitle" style="text-align: left; font-size: 20px; margin-top: 10px;"></div>
+    <div id="modalTitle" style="text-align: center; font-size: 21px; margin-top: 18px;"></div>
 </div>
 
 
@@ -297,8 +293,7 @@ function dbResult($dbResult): void
         echo "<div class='result-container'>";
         echo "<b><div id='rl'><a class='result-link' href='https://{$row["link"]}'>{$row["title"]}</a></div></b>";
         echo "<div><a class='result-url' href='https://{$row["link"]}'>https://{$row["link"]}</a></div>";
-        echo "<span class='result-snippet'>" . substr($row["keywords"], 0, 100) . "...</span>";
-        echo "<div class='external-links-count'>External Links: {$row['external_links_count']}</div>";
+        echo "<span class='result-snippet'>" . substr($row["keywords"], 0, 140) . "...</span>";
         echo "</div>";
     }
 }
